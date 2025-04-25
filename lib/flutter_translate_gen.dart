@@ -12,6 +12,7 @@ import 'package:flutter_translate_gen/keys_class_generator.dart';
 import 'package:flutter_translate_gen/localized_item.dart';
 import 'package:glob/glob.dart';
 import 'package:source_gen/source_gen.dart';
+import 'package:pub_semver/pub_semver.dart';
 
 class FlutterTranslateGen extends AnnotationGenerator<TranslateKeysOptions>
 {
@@ -45,7 +46,7 @@ class FlutterTranslateGen extends AnnotationGenerator<TranslateKeysOptions>
 
         final DartEmitter emitter = DartEmitter(allocator: Allocator.none);
 
-        return DartFormatter().format('${file.accept(emitter)}');
+        return DartFormatter(languageVersion: Version.parse('3.6.0')).format('${file.accept(emitter)}');
     }
 
     TranslateKeysOptions parseOptions(ConstantReader annotation)
